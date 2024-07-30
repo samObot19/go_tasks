@@ -10,11 +10,12 @@ Add Members: Add new members to the library, including the member's name and uni
 Borrow Books: Allow members to borrow books from the library, and keep track of the borrower and the borrowed book.
 List Available Books: Display a list of all the books currently available in the library.
 List Borrowed Books: Display a list of all the books that are currently borrowed, along with the name of the borrower.
-
 Usage
 To use the Library Management System, you'll need to have Go installed on your system. Here's how you can get started:
 
 Clone the repository: git clone https://github.com/samObot19/go_tasks/library-management.git
-Change to the project directory: cd library-management-system
+Change to the project directory: cd library-management
 Build the application: go build -o library-manager
 Run the application: ./library-manager
+The application will start, and you can then use the available commands to manage the library's book collection and member information.
+
