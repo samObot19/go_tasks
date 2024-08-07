@@ -15,19 +15,19 @@ func NewServices(con Storage.Storage) *Services{
 
 func (s *Services) GetTask(id *string) (models.Task, error) {
 	task, err := s.Connection.ReadTask(*id)
-    if err != nil {
-        return models.Task{}, err
-    }
-    return task, nil
+	if err != nil {
+		return models.Task{}, err
+	}
 
+	return task, nil
 }
 
 func (s *Services) GetTasks() []models.Task{
 	tasks, err := s.Connection.ReadAllTask()
-    if err != nil {
-        return []models.Task{}
-    }
-    return tasks
+	if err != nil {
+		return []models.Task{}
+	}
+	return tasks
 }
 
 func (s *Services) AddTask(newTask *models.Task) error{

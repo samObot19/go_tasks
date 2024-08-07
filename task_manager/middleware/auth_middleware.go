@@ -39,19 +39,20 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		claims, ok := token.Claims.(jwt.MapClaims)
-        if !ok {
-            c.AbortWithStatus(http.StatusUnauthorized)
-            return
-        }
+
+		if !ok {
+			c.AbortWithStatus(http.StatusUnauthorized)
+			return
+		}
 
 		username := claims["username"].(string)
 		r := claims["role"].(string)
 
 		user := &models.User{
-            UserName: username,
-            Role:     r,
-        }
-        c.Set("user", user)
+			UserName: username,
+			Role:     r,
+        	}
+        	c.Set("user", user)
 			
 		c.Next()
 	}

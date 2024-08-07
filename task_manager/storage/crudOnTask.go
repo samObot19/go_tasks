@@ -71,35 +71,35 @@ func (s *NOSQLConnection) ReadTask(id string) (models.Task, error) {
 }
 
 func (s *NOSQLConnection) ReadAllTask() ([]models.Task, error) {
-    var results []models.Task
-    cursor, err := s.taskCollection.Find(context.TODO(), bson.M{})
+	var results []models.Task
+	cursor, err := s.taskCollection.Find(context.TODO(), bson.M{})
 
-    if err != nil {
-        return nil, err
-    }
+	if err != nil {
+		return nil, err
+	}
 
-    defer cursor.Close(context.TODO())
+    	defer cursor.Close(context.TODO())
 
-    for cursor.Next(context.TODO()) {
-        var result models.Task
-        if err := cursor.Decode(&result); err != nil {
-            return nil , err
-        }
-        results = append(results, result)
-    }
+    	for cursor.Next(context.TODO()) {
+        	var result models.Task
+        	if err := cursor.Decode(&result); err != nil {
+            		return nil , err
+        	}
+        	results = append(results, result)
+    	}
 
-    if err := cursor.Err(); err != nil {
-        return nil, err
-    }
+    	if err := cursor.Err(); err != nil {
+        	return nil, err
+    	}
 
-    return results, nil
+    	return results, nil
 }
 
 func (s *NOSQLConnection) UpdateTask(id string, data models.Task) error {
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-        return err
-    }
+        	return err
+    	}
 	filter := bson.M{"_id" : objectID}
 	update :=  bson.M{"$set": data}
 	_, err = s.taskCollection.UpdateOne(context.Background(), filter, update)
@@ -110,8 +110,8 @@ func (s *NOSQLConnection) UpdateTask(id string, data models.Task) error {
 func (s *NOSQLConnection) DeleteTask(id string) error{
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-        return err
-    }
+        	return err
+    	}
 	filter := bson.M{"_id" : objectID}
 	result, err := s.taskCollection.DeleteOne(context.TODO(), filter)
 	

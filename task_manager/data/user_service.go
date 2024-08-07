@@ -2,18 +2,17 @@ package service
 
 import (
 	"task_manager/models"
-    "errors"
+	"errors"
 )
 
 
 func (s *Services) GetUser(username *string) (models.User, error) {
 	user, ok := s.Connection.ReadUser(*username)
 
-    if !ok{
-        return models.User{}, errors.New("the user not found")
-    }
-
-    return user, nil
+	if !ok{
+		return models.User{}, errors.New("the user not found")
+	}
+	return user, nil
 }
 
 
