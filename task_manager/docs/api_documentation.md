@@ -1,4 +1,4 @@
-**Task Management API Documentation**
+## **Task Management API Documentation** ##
 
 **Base URL**
 
@@ -6,22 +6,22 @@
 http://localhost:8080/api
 ```
 
-**Authentication and Authorization**
+### **Authentication and Authorization**
 
-**Authentication**
+#### **Authentication**
 
 This API uses JWT (JSON Web Tokens) for authentication. Users must log in to obtain a token and include this token in the Authorization header of each request.
 
-**Authorization**
+#### **Authorization**
 
 
 The API has role-based access control (RBAC). Only users with the admin role can create, update, delete tasks, and promote users.
 
-**Endpoints**
+#### **Endpoints**
 
 Authentication
 
-**Login**
+#### **Login**
 ```bash
 post-> api/login
 ```
@@ -122,7 +122,7 @@ localhost:8080/api/admin/tasks/66b35e8269dbc16fed2ef33b
 }
 ```
 
-**User Management (Admin Only)**
+### **User Management (Admin Only)**
 
 **Promote User to Admin**
 
@@ -176,7 +176,7 @@ Authorization: Bearer jwt-token
 }
 ```
 
-**Error handling**
+### **Error handling**
 
 The API returns standard HTTP status codes to indicate the success or failure of an API request. Here are some common status codes:
 
