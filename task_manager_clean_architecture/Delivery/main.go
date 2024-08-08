@@ -2,9 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/task_manager/domain"
 	"github.com/task_manager/usecases"
-	"github.com/task_manager/routers"
+	"github.com/task_manager/Delivery/routers"
 	"github.com/task_manager/Delivery/controllers"
 	"github.com/task_manager/Repositories/data_base/mongodb"
 )

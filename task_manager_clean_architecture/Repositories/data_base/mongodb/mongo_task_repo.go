@@ -15,7 +15,7 @@ type MongoTaskRepo struct{
 }
 
 
-func NewMongoTaskRepo() *NOSQLConnection {
+func NewMongoTaskRepo() *MongoTaskRepo {
 	url := "mongodb://localhost:27017"
 	client, err := NewMongoStorage(url)
 
@@ -56,7 +56,7 @@ func (s *MongoTaskRepo) ReadTask(id string) (domain.Task, error) {
     	return result, nil
 }
 
-func (s *MongoTaskReop) ReadAllTask() ([]domain.Task, error) {
+func (s *MongoTaskRepo) ReadAllTask() ([]domain.Task, error) {
 	var results []domain.Task
 	cursor, err := s.collection.Find(context.TODO(), bson.M{})
 

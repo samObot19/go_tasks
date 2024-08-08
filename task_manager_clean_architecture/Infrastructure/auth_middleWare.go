@@ -1,9 +1,14 @@
 package Infrastructure
 
 import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"strings"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/task_manager/Domain"
 
 )
-
+var jwtSecret = "your_secrete_key"
 func AuthMiddleware() gin.HandlerFunc {
 
 	return func(c *gin.Context) {

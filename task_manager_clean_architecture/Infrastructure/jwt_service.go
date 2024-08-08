@@ -3,6 +3,8 @@ package Infrastructure
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/task_manager/Domain"
+	"time"
+	"errors"
 )
 
 type JWTService struct {

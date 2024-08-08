@@ -3,7 +3,7 @@ package router
 
 import (
     	"github.com/gin-gonic/gin"
-    	"github.com/task_manager/controllers"
+    	"github.com/task_manager/Delivery/controllers"
 	"github.com/task_manager/Infrastructure"
 )
 

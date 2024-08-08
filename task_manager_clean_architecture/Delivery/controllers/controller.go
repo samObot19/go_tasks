@@ -5,18 +5,17 @@ import (
 	"github.com/task_manager/Infrastructure"
 	"github.com/task_manager/Domain"
 	"github.com/gin-gonic/gin"
-	"time"
 	"fmt"
 	"net/http"
 )
 
 type Handler struct{
-	task	*TaskUsecase
-	user	*UserUsecase
+	task	*usecase.TaskUsecase
+	user	*usecase.UserUsecase
 }
 
-func NewHandler(tk *TaskUsecase, ur *UserUsecase) *handler{
-	return &handler{
+func NewHandler(tk *usecase.TaskUsecase, ur *usecase.UserUsecase) *Handler{
+	return &Handler{
 			task : tk,
 			user : ur,
 		}
@@ -146,12 +145,12 @@ func (cnt *Handler) Login(cnx *gin.Context){
 		return
 	}
 
-	if Infrastructure.IsValidPassword(password){
+	if Infrastructure.IsValidPassword(user.Password, loggedUser.Password){
 		cnx.JSON(401, gin.H{"error": "Invalid username or password"})
 		return
 	}
 
-	jwtToken, err := jwt.GenerateToken(&logeduser)
+	jwtToken, err := jwt.GenerateToken(&loggedUser)
 	
 	if err != nil {
 		cnx.JSON(500, gin.H{"error": "Internal server error"})

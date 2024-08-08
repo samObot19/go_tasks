@@ -7,13 +7,13 @@ import (
 )
 
 type UserUsecase struct{
-	db *repository.UserRepository
+	db repository.UserRepository
 }
 
 
-func NewUserUsecase(con *repositoryUserRepository) *UserUsecase{
+func NewUserUsecase(con repository.UserRepository) *UserUsecase{
 	return &UserUsecase{
-		db : &con,
+		db : con,
 	}
 }
 

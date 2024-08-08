@@ -5,8 +5,8 @@ import (
 )
 
 
-func EncryptPassword(string password) (string, err) {
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+func EncryptPassword(password string) (string, error) {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 
 	if err != nil{
 		return "", err
@@ -15,8 +15,8 @@ func EncryptPassword(string password) (string, err) {
 	return string(hashedPassword), nil
 
 }
-func IsValidPassword(password string) bool{
-        if bcrypt.CompareHashAndPassword([]byte(loggedUser.Password), []byte(user.Password)) != nil {
+func IsValidPassword(loggedUser string, user string) bool{
+        if bcrypt.CompareHashAndPassword([]byte(loggedUser), []byte(user)) != nil {
                 return false
         }
 
