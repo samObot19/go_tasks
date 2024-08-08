@@ -8,7 +8,7 @@ import (
 	"github.com/task_manager/Domain"
 
 )
-var jwtSecret = "your_secrete_key"
+var jwtSecret = "your_jwt_secret"
 func AuthMiddleware() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
