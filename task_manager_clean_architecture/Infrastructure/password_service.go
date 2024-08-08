@@ -15,4 +15,11 @@ func EncryptPassword(string password) (string, err) {
 	return string(hashedPassword), nil
 
 }
+func IsValidPassword(password string) bool{
+        if bcrypt.CompareHashAndPassword([]byte(loggedUser.Password), []byte(user.Password)) != nil {
+                return false
+        }
+
+        return true
+}
 

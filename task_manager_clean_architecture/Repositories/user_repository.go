@@ -1,5 +1,8 @@
 package repository
 
+import (
+	"github.com/task_manager/Domain"
+)
 
 type UserRepository interface{
 	CreateUser(data *models.User) error
