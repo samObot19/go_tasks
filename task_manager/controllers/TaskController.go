@@ -8,27 +8,27 @@ import (
 )
 
 type Controller struct {
-    Service *service.Services
+	Service *service.Services
 }
 
 func NewController(newService *service.Services) *Controller {
-    return &Controller{Service: newService}
+	return &Controller{Service: newService}
 }
 
 func (cnt *Controller)AddTask(ctx *gin.Context){
 	var newTask models.Task
 	err := ctx.ShouldBindJSON(&newTask)
 
-    if err != nil{
+	if err != nil{
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-        return
-    }
+        	return
+    	}
 
-    err = cnt.Service.AddTask(&newTask)
+    	err = cnt.Service.AddTask(&newTask)
 	if err != nil{
 		ctx.JSON(http.StatusCreated, gin.H{"message": err})
 	}
-    ctx.JSON(http.StatusCreated, gin.H{"message": "Task created"})
+    	ctx.JSON(http.StatusCreated, gin.H{"message": "Task created"})
 
 }
 
@@ -37,11 +37,11 @@ func (cnt *Controller) GetTask(ctx *gin.Context){
 	id := ctx.Param("id")
 	val, err := cnt.Service.GetTask(&id)
 
-    if err != nil{
+    	if err != nil{
 		ctx.JSON(http.StatusNotFound, gin.H{"message" : "Task not found"})
-    }else{
-        ctx.JSON(http.StatusOK, val)
-    }
+    	}else{
+        	ctx.JSON(http.StatusOK, val)
+    	}
 
 }
 
