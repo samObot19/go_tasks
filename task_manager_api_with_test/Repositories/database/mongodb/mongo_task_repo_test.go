@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"github.com/task_manager/Repositories/data_base/mongodb"
+	"github.com/task_manager/Repositories/database/mongodb"
 	
 )
 
