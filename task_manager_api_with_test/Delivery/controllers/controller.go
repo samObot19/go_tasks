@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/task_manager/usecases"
+	"github.com/task_manager/Usecases"
 	"github.com/task_manager/Infrastructure"
 	"github.com/task_manager/Domain"
 	"github.com/gin-gonic/gin"

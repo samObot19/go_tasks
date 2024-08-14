@@ -1,0 +1,69 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go CI Pipeline for Task Manager
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      url: ${{ secrets.url }}
+
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Go environment
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'  # Update to your Go version if different
+
+    # Step 3: Cache Go modules
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          /go/pkg/mod
+        key: ${{ runner.os }}-go-${{ steps.go.outputs.go-version }}-modules-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-${{ steps.go.outputs.go-version }}-modules-
+
+    # Step 4: Change to the project directory
+    - name: Change directory
+      run: cd task_manager_api_with_test
+
+    # Step 5: Install dependencies
+    - name: Install dependencies
+      run: go mod tidy
+      working-directory: task_manager_api_with_test
+
+    # Step 6: Build the application
+    - name: Build
+      run: go build -v .
+      working-directory: task_manager_api_with_test/Delivery
+
+    # Step 7: Run unit tests
+    - name: Run tests
+      run: go test -v ./...
+      working-directory: task_manager_api_with_test
+
+    # Step 8: Run static analysis
+    - name: Run static analysis
+      run: |
+        go install golang.org/x/lint/golint@latest
+        golint ./...
+      working-directory: task_manager_api_with_test
