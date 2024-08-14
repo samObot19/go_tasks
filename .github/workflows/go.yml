@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      url : ${{ secrets.url }}
+      url: ${{ secrets.url }}
 
     steps:
     # Step 1: Checkout the code
@@ -42,21 +42,28 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-${{ steps.go.outputs.go-version }}-modules-
 
-    # Step 4: Install dependencies
+    # Step 4: Change to the project directory
+    - name: Change directory
+      run: cd task_manager_api_with_test
+
+    # Step 5: Install dependencies
     - name: Install dependencies
       run: go mod tidy
+      working-directory: task_manager_api_with_test
 
-    # Step 5: Build the application
+    # Step 6: Build the application
     - name: Build
-      working-directory: .task_manager_api_with_test/Delivery
       run: go build -v .
+      working-directory: task_manager_api_with_test/Delivery
 
-    # Step 6: Run unit tests
+    # Step 7: Run unit tests
     - name: Run tests
       run: go test -v ./...
+      working-directory: task_manager_api_with_test
 
-    # Step 7: Run static analysis
+    # Step 8: Run static analysis
     - name: Run static analysis
       run: |
         go install golang.org/x/lint/golint@latest
         golint ./...
+      working-directory: task_manager_api_with_test
