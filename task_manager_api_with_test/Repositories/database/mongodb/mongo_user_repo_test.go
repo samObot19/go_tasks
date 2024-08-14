@@ -12,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"github.com/task_manager/Domain"
-	"github.com/task_manager/Repositories/data_base/mongodb"
+	"github.com/task_manager/Repositories/database/mongodb"
 )
 
 type MongoUserRepoTestSuite struct {
